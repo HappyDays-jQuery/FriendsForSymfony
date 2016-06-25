@@ -8,12 +8,14 @@ A Symfony project created on June 25, 2016, 9:27 am.
 [![Build Status](https://scrutinizer-ci.com/g/HappyDays-jQuery/FriendsForSymfony/badges/build.png?b=master)](https://scrutinizer-ci.com/g/HappyDays-jQuery/FriendsForSymfony/build-status/master)
 [![Build Status](https://travis-ci.org/HappyDays-jQuery/FriendsForSymfony.svg?branch=master)](https://travis-ci.org/HappyDays-jQuery/FriendsForSymfony)
 
-BUNDLE CREATE
+CREATE Bundole
+
 ```shell
 php bin/console generate:bundle --namespace=Acme/StoreBundle
 ```
 
-DB CREATE
+CREATE DB
+
 ```shell
 php bin/console doctrine:database:create
 ```
