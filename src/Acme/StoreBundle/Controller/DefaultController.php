@@ -53,9 +53,15 @@ class DefaultController extends Controller
             ->getRepository('AcmeStoreBundle:Product')
             ->find($id);
 
+        $categoryName = $product->getCategory()->getName();
+
         if (!$product) {
             throw $this->createNotFoundException('No product found for id ' . $id);
         }
+
+        return new Response(
+            'show product id: '.$product->getId().' and category name: '.$categoryName
+        );
 
         /*
         // プライマリーキー(通常は"id")でクエリ
