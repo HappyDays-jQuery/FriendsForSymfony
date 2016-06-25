@@ -23,15 +23,15 @@ php bin/console doctrine:database:create
 CREATE Entity AND REPOSITORY
 
 ```shell
-php app/console doctrine:generate:entity --entity="AcmeStoreBundle:Product" --fields="name:string(255) price:float description:text"
+php bin/console doctrine:generate:entity --entity="AcmeStoreBundle:Product" --fields="name:string(255) price:float description:text"
 ```
 
 Entityクラスを自動生成しない場合、以下でsetter/getter作成
 ```shell
-php app/console doctrine:generate:entities Acme/StoreBundle/Entity/Product
+php bin/console doctrine:generate:entities Acme/StoreBundle/Entity/Product
 ```
 
 EntityをベースにDBにschema作成
 ```shell
-php app/console doctrine:schema:update --force
+php bin/console doctrine:schema:update --force
 ```
