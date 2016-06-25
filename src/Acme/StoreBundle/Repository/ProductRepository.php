@@ -3,6 +3,7 @@
 namespace Acme\StoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 
 /**
  * ProductRepository
@@ -16,5 +17,21 @@ class ProductRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery('SELECT p FROM AcmeStoreBundle:Product p ORDER BY p.name ASC');
+    }
+
+    public function findOneByIdJoinedToCategory($id)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+            SELECT p, c FROM AcmeStoreBundle:Product p
+            JOIN p.category c
+            WHERE p.id = :id'
+            )->setParameter('id', $id);
+
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException $e) {
+            return null;
+        }
     }
 }

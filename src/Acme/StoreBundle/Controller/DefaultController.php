@@ -3,6 +3,7 @@
 namespace Acme\StoreBundle\Controller;
 
 use Acme\StoreBundle\Entity\Category;
+use Acme\StoreBundle\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Acme\StoreBundle\Entity\Product;
@@ -39,28 +40,28 @@ class DefaultController extends Controller
         $em->flush();
 
         return new Response(
-            'Created product id: '.$product->getId().' and category id: '.$category->getId()
+            'Created product id: ' . $product->getId() . ' and category id: ' . $category->getId()
         );
     }
 
     /**
      * @Route("/store/product/{id}")
      * @param integer $id
+     * @return Response
      */
     public function showAction($id)
     {
-        $product = $this->getDoctrine()
-            ->getRepository('AcmeStoreBundle:Product')
-            ->find($id);
+        /** @var  $productRepository ProductRepository */
+        $productRepository = $this->getDoctrine()
+            ->getRepository('AcmeStoreBundle:Product');
 
-        $categoryName = $product->getCategory()->getName();
+        /** @var  $product Product */
+        $product = $productRepository->findOneByIdJoinedToCategory($id);
 
-        if (!$product) {
-            throw $this->createNotFoundException('No product found for id ' . $id);
-        }
+        $category = $product->getCategory();
 
         return new Response(
-            'show product id: '.$product->getId().' and category name: '.$categoryName
+            'show product id: ' . $product->getId() . ' and category name: ' . $category->getName()
         );
 
         /*
