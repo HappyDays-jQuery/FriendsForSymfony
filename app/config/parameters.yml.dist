@@ -17,3 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # for ElasticSearch
+    fos_elastica.host: localhost
+    fos_elastica.port: 9200
