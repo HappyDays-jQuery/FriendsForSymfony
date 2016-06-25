@@ -73,4 +73,24 @@ class DefaultController extends Controller
         */
         // do something, like pass the $product object into a template
     }
+
+    /**
+     * @Route("/store/product/{id}/update")
+     * @param integer $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function updateAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $product = $em->getRepository('AcmeStoreBundle:Product')->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException('No product found for id ' . $id);
+        }
+
+        $product->setName('New product name!');
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('homepage'));
+    }
 }
