@@ -26,3 +26,8 @@ CREATE Entity AND REPOSITORY
 php app/console doctrine:generate:entity --entity="AcmeStoreBundle:Product" --fields="name:string(255) price:float description:text"
 ```
 
+Entityクラスを自動生成しない場合、以下でsetter/getter作成
+```shell
+php app/console doctrine:generate:entities Acme/StoreBundle/Entity/Product
+```
+
