@@ -2,6 +2,7 @@
 
 namespace Acme\StoreBundle\Controller;
 
+use Acme\StoreBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Acme\StoreBundle\Entity\Product;
@@ -22,16 +23,24 @@ class DefaultController extends Controller
      */
     public function createAction()
     {
+        $category = new Category();
+        $category->setName('Main Products');
+
         $product = new Product();
-        $product->setName('A Foo Bar');
-        $product->setPrice('19.99');
+        $product->setName('Foo');
+        $product->setPrice(19.99);
         $product->setDescription('Lorem ipsum dolor');
+        // この商品をカテゴリに関連付ける
+        $product->setCategory($category);
 
         $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($category);
         $em->persist($product);
         $em->flush();
 
-        return new Response('Created product id ' . $product->getId());
+        return new Response(
+            'Created product id: '.$product->getId().' and category id: '.$category->getId()
+        );
     }
 
     /**
