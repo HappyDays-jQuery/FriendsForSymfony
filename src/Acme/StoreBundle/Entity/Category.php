@@ -3,6 +3,7 @@
 namespace Acme\StoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
@@ -12,6 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
+     */
+    protected $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
     /**
      * @var int
      *

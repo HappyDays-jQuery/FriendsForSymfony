@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    protected $category;
+
     /**
      * @var int
      *
