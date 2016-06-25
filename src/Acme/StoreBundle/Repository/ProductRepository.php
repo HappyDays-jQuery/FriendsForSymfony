@@ -21,12 +21,15 @@ class ProductRepository extends EntityRepository
 
     public function findOneByIdJoinedToCategory($id)
     {
+        $sql = <<< __SQL___
+SELECT p, c FROM AcmeStoreBundle:Product p
+JOIN p.category c
+WHERE p.id = :id
+__SQL___;
+
         $query = $this->getEntityManager()
-            ->createQuery('
-            SELECT p, c FROM AcmeStoreBundle:Product p
-            JOIN p.category c
-            WHERE p.id = :id'
-            )->setParameter('id', $id);
+            ->createQuery($sql)
+            ->setParameter('id', $id);
 
         try {
             return $query->getSingleResult();
