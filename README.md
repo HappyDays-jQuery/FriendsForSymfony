@@ -31,3 +31,7 @@ Entityクラスを自動生成しない場合、以下でsetter/getter作成
 php app/console doctrine:generate:entities Acme/StoreBundle/Entity/Product
 ```
 
+EntityをベースにDBにschema作成
+```shell
+php app/console doctrine:schema:update --force
+```
