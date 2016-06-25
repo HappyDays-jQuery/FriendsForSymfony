@@ -19,3 +19,10 @@ CREATE DB
 ```shell
 php bin/console doctrine:database:create
 ```
+
+CREATE Entity AND REPOSITORY
+
+```shell
+php app/console doctrine:generate:entity --entity="AcmeStoreBundle:Product" --fields="name:string(255) price:float description:text"
+```
+
