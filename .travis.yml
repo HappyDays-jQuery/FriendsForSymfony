@@ -7,8 +7,6 @@ php:
 before_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - composer install --dev --prefer-source
-  - vendor/bin/composer env
-  - vendor/bin/composer setup
 
 script:
   - vendor/bin/phpunit

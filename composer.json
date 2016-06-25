@@ -36,9 +36,6 @@
         "phpmd/phpmd": "~2.3"
     },
     "scripts": {
-        "env": [
-            "cp app/config/parameters.yml.dist app/config/parameters.yml"
-        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
